@@ -1,0 +1,368 @@
+<!doctype html>
+<html lang="ro" data-theme="school">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Admin Scoala | Generator Certificate</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Literata:wght@400;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="../assets/css/app.css" rel="stylesheet">
+  <link href="../assets/css/themes/theme-school.css" rel="stylesheet">
+  <link href="../assets/css/themes/theme-corporate.css" rel="stylesheet">
+  <link href="../assets/css/themes/theme-dark.css" rel="stylesheet">
+  <style>
+    .certificate-preview {
+      border: 2px solid #ddd;
+      border-radius: 8px;
+      padding: 40px;
+      background: white;
+      min-height: 400px;
+      font-family: 'Georgia', serif;
+      position: relative;
+    }
+    .certificate-preview::before {
+      content: '';
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      right: 10px;
+      bottom: 10px;
+      border: 2px solid #8B7355;
+      pointer-events: none;
+    }
+    .certificate-content {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+    }
+    .certificate-title {
+      font-size: 36px;
+      font-weight: bold;
+      color: #2c3e50;
+      margin: 20px 0;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+    .certificate-subtitle {
+      font-size: 14px;
+      color: #7f8c8d;
+      text-transform: uppercase;
+      margin-bottom: 30px;
+      letter-spacing: 1px;
+    }
+    .certificate-text {
+      font-size: 16px;
+      line-height: 1.8;
+      color: #2c3e50;
+      margin: 30px 0;
+    }
+    .certificate-name {
+      font-size: 24px;
+      font-weight: bold;
+      color: #c0392b;
+      margin: 20px 0;
+    }
+    .certificate-footer {
+      margin-top: 40px;
+      display: flex;
+      justify-content: space-around;
+      font-size: 12px;
+    }
+    .signature-line {
+      border-top: 2px solid #2c3e50;
+      width: 150px;
+      text-align: center;
+      pt: 10px;
+    }
+  </style>
+</head>
+<body data-page="certificates" data-base="../" data-sidebar-title="Generator Certificate" data-sidebar-body="Genereaza documente oficiale PDF" data-sidebar-badge-text="Profesional" data-sidebar-badge-class="info" data-sidebar-badge-icon="bi-file-pdf" data-topbar-title="Generator Certificate" data-topbar-subtitle="Adeverinte si Documente" data-topbar-search="Cauta profesor" data-topbar-cta="Genereaza" data-topbar-avatar="RA" data-footer-text="Copyright 2026 Admin Scoala. Toate drepturile rezervate.">
+  <div class="app-shell">
+    <aside class="sidebar">
+  <div class="sidebar-header">
+    <a class="brand" href="../index.html">
+      <div class="brand-mark">S</div>
+      <div>
+        <div class="brand-title">Admin Scoala</div>
+        <div class="brand-subtitle">Dashboard</div>
+      </div>
+    </a>
+    <button class="btn btn-light btn-icon d-lg-none" data-sidebar-toggle type="button" aria-label="Deschide meniul">
+      <i class="bi bi-list"></i>
+    </button>
+  </div>
+  <nav class="sidebar-nav">
+    <a class="nav-link" data-page="dashboard" href="../index.html"><i class="bi bi-speedometer2"></i>Dashboard</a>
+    <a class="nav-link" data-page="teachers" href="teachers.html"><i class="bi bi-mortarboard"></i>Profesori</a>
+    <a class="nav-link" data-page="certificates" href="certificate-generator.html"><i class="bi bi-file-pdf"></i>Certificate</a>
+  </nav>
+  <div class="sidebar-card">
+    <h6 data-sidebar-title>Generator Certificate</h6>
+    <p class="mb-2" data-sidebar-body>Genereaza documente oficiale PDF</p>
+    <div class="badge-soft info" data-sidebar-badge>
+      <i class="bi bi-file-pdf" data-sidebar-badge-icon></i>
+      <span data-sidebar-badge-text>Profesional</span>
+    </div>
+  </div>
+</aside>
+
+    <div class="app-main">
+      <header class="topbar">
+  <div class="topbar-row">
+    <div class="topbar-title">
+      <h1 data-topbar-title>Generator Certificate</h1>
+      <span data-topbar-subtitle>Adeverinte si Documente</span>
+    </div>
+    <div class="topbar-user">
+      <select class="form-select form-select-sm" id="theme-select" aria-label="Schimba tema">
+        <option value="school">School</option>
+        <option value="corporate">Corporate</option>
+        <option value="dark">Dark</option>
+      </select>
+    </div>
+  </div>
+</header>
+
+      <main class="content container-fluid">
+        <div class="row g-4">
+          <!-- Config Panel -->
+          <div class="col-lg-4">
+            <div class="app-card p-4">
+              <h5 class="mb-3">
+                <i class="bi bi-gear-fill"></i> Configurare
+              </h5>
+              <form class="row g-3">
+                <div class="col-12">
+                  <label class="form-label">Selecteaza Profesor *</label>
+                  <select id="teacher-select" class="form-select" required>
+                    <option value="">-- Incarca profesori --</option>
+                  </select>
+                </div>
+                <div class="col-12">
+                  <label class="form-label">Tip Document</label>
+                  <select id="document-type" class="form-select" onchange="updatePreview()">
+                    <option value="attestation">Adeverinta Angajare</option>
+                    <option value="experience">Certificat Experienta</option>
+                    <option value="specialization">Certificat Specializare</option>
+                    <option value="hours">Certificat Ore Predate</option>
+                  </select>
+                </div>
+                <div class="col-12">
+                  <label class="form-label">Data Emiterii</label>
+                  <input id="issue-date" class="form-control" type="date">
+                </div>
+                <div class="col-12">
+                  <label class="form-label">Locul Emiterii</label>
+                  <input id="issue-place" class="form-control" type="text" placeholder="Ex: Bucuresti">
+                </div>
+                <div class="col-12">
+                  <label class="form-label">Scopul Documentului</label>
+                  <textarea id="purpose" class="form-control" rows="3" placeholder="De ce se cere acest document?"></textarea>
+                </div>
+                <div class="col-12">
+                  <label class="form-label">Semnator (Nume)</label>
+                  <input id="signer-name" class="form-control" type="text" placeholder="Ex: Director Scola">
+                </div>
+                <div class="col-12">
+                  <label class="form-label">Pozitia Semnator</label>
+                  <input id="signer-position" class="form-control" type="text" placeholder="Ex: Director">
+                </div>
+                <div class="col-12">
+                  <button type="button" class="btn btn-primary w-100" onclick="updatePreview()">
+                    <i class="bi bi-eye"></i> Previzualizare
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <!-- Preview Panel -->
+          <div class="col-lg-8">
+            <div class="app-card p-4">
+              <div class="d-flex justify-content-between align-items-center mb-3">
+                <h5 class="mb-0">
+                  <i class="bi bi-eye"></i> Previzualizare Document
+                </h5>
+                <div class="d-flex gap-2">
+                  <button class="btn btn-outline-secondary btn-sm" onclick="printCertificate()">
+                    <i class="bi bi-printer"></i> Tipareste
+                  </button>
+                  <button class="btn btn-primary btn-sm" onclick="downloadPDF()">
+                    <i class="bi bi-download"></i> Descarca PDF
+                  </button>
+                </div>
+              </div>
+
+              <div id="certificate-container" class="certificate-preview">
+                <div class="certificate-content">
+                  <div style="font-size: 12px; color: #7f8c8d; margin-bottom: 20px;">PENTRU OFICIU - DOSAR PERSONAL</div>
+
+                  <div class="certificate-title" id="cert-title">ADEVERINTA</div>
+
+                  <div class="certificate-subtitle">De Angajare</div>
+
+                  <div class="certificate-text">
+                    <strong>Se adevereste prin prezenta</strong> ca:
+                  </div>
+
+                  <div class="certificate-name" id="cert-name">Nume Profesor</div>
+
+                  <div class="certificate-text">
+                    <p>CNP: <span id="cert-cnp">--</span></p>
+                    <p>este in prezent <strong>angajat/a</strong> la aceasta institutie cu statutul de <strong><span id="cert-role">--</span></strong> la disciplina <strong><span id="cert-subject">--</span></strong>.</p>
+
+                    <p style="margin-top: 20px;">Acest document se elibereaza la cererea interesatului/ei, pentru:</p>
+                    <p style="font-style: italic; margin-top: 10px;"><span id="cert-purpose">scopul care se va preciza</span></p>
+                  </div>
+
+                  <div class="certificate-footer">
+                    <div class="signature-line">
+                      <div style="margin-top: 10px; font-size: 11px;">
+                        <span id="cert-signer">Semnatar</span><br>
+                        <span id="cert-signer-pos">Pozitie</span>
+                      </div>
+                    </div>
+                    <div style="text-align: center; font-size: 12px;">
+                      <p><strong><span id="cert-place">Locul</span>, <span id="cert-date">Data</span></strong></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Document Types Info -->
+            <div class="app-card p-4 mt-4">
+              <h5 class="mb-3">Tipuri de Documente Disponibile</h5>
+              <div class="list-group list-group-flush">
+                <div class="list-group-item">
+                  <h6 class="mb-1">📄 Adeverinta Angajare</h6>
+                  <p class="mb-0 text-muted small">Confirma statutul actual de angajat la scoala</p>
+                </div>
+                <div class="list-group-item">
+                  <h6 class="mb-1">🎓 Certificat Experienta</h6>
+                  <p class="mb-0 text-muted small">Documenta experienta didactica si vechimea</p>
+                </div>
+                <div class="list-group-item">
+                  <h6 class="mb-1">📚 Certificat Specializare</h6>
+                  <p class="mb-0 text-muted small">Confirma specializarile si discipline predate</p>
+                </div>
+                <div class="list-group-item">
+                  <h6 class="mb-1">⏱️ Certificat Ore Predate</h6>
+                  <p class="mb-0 text-muted small">Detaliaza orele de predare pe perioada specificata</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <footer class="app-footer" data-footer-text>Copyright 2026 Admin Scoala. Toate drepturile rezervate.</footer>
+    </div>
+  </div>
+  <div class="sidebar-overlay"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <script src="../assets/js/theme.js"></script>
+  <script src="../assets/js/app.js"></script>
+  <script src="../assets/js/api-integration.js"></script>
+  <script>
+    // Initialize
+    window.addEventListener('load', async () => {
+      const teachers = await ApiIntegration.teachers.getAll();
+      if (teachers) {
+        const select = document.getElementById('teacher-select');
+        teachers.forEach(teacher => {
+          const option = document.createElement('option');
+          option.value = JSON.stringify(teacher);
+          option.textContent = `${teacher.name} - ${teacher.subject}`;
+          select.appendChild(option);
+        });
+      }
+
+      // Set today's date
+      document.getElementById('issue-date').valueAsDate = new Date();
+      document.getElementById('issue-place').value = 'Bucuresti';
+    });
+
+    // Update preview
+    window.updatePreview = () => {
+      const teacherData = document.getElementById('teacher-select').value;
+      if (!teacherData) {
+        alert('Selecteaza un profesor!');
+        return;
+      }
+
+      const teacher = JSON.parse(teacherData);
+      const docType = document.getElementById('document-type').value;
+      const issueDate = document.getElementById('issue-date').value;
+      const issuePlace = document.getElementById('issue-place').value;
+      const purpose = document.getElementById('purpose').value || 'scopul care se va preciza';
+      const signerName = document.getElementById('signer-name').value || 'Director';
+      const signerPos = document.getElementById('signer-position').value || 'Director';
+
+      // Update certificate content
+      document.getElementById('cert-name').textContent = teacher.name;
+      document.getElementById('cert-cnp').textContent = '---';
+      document.getElementById('cert-role').textContent = teacher.role || '---';
+      document.getElementById('cert-subject').textContent = teacher.subject || '---';
+      document.getElementById('cert-purpose').textContent = purpose;
+      document.getElementById('cert-signer').textContent = signerName;
+      document.getElementById('cert-signer-pos').textContent = signerPos;
+      document.getElementById('cert-place').textContent = issuePlace;
+      document.getElementById('cert-date').textContent = formatDate(issueDate);
+
+      // Update title based on type
+      const titles = {
+        'attestation': 'ADEVERINTA',
+        'experience': 'CERTIFICAT DE EXPERIENTA',
+        'specialization': 'CERTIFICAT DE SPECIALIZARE',
+        'hours': 'CERTIFICAT DE ORE PREDATE'
+      };
+      document.getElementById('cert-title').textContent = titles[docType] || 'ADEVERINTA';
+    };
+
+    // Download PDF
+    window.downloadPDF = () => {
+      const element = document.getElementById('certificate-container');
+      const teacher = JSON.parse(document.getElementById('teacher-select').value || '{}');
+      const opt = {
+        margin: 10,
+        filename: `certificate-${teacher.name}-${new Date().toISOString().split('T')[0]}.pdf`,
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2 },
+        jsPDF: { orientation: 'portrait', unit: 'mm', format: 'a4' }
+      };
+      html2pdf().set(opt).from(element).save();
+    };
+
+    // Print certificate
+    window.printCertificate = () => {
+      const element = document.getElementById('certificate-container');
+      const printWindow = window.open('', '', 'height=600,width=800');
+      printWindow.document.write('<html><head><title>Certificate</title>');
+      printWindow.document.write('<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">');
+      printWindow.document.write('<style>body { font-family: Georgia, serif; }</style>');
+      printWindow.document.write('</head><body>');
+      printWindow.document.write(element.innerHTML);
+      printWindow.document.write('</body></html>');
+      printWindow.document.close();
+      printWindow.print();
+    };
+
+    // Format date
+    function formatDate(dateStr) {
+      if (!dateStr) return new Date().toLocaleDateString('ro-RO');
+      const date = new Date(dateStr + 'T00:00:00');
+      return date.toLocaleDateString('ro-RO', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      });
+    }
+  </script>
+</body>
+</html>
