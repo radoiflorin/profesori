@@ -1,0 +1,366 @@
+<!doctype html>
+<html lang="ro" data-theme="school">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Admin Scoala | Import Excel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Literata:wght@400;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="../assets/css/app.css" rel="stylesheet">
+  <link href="../assets/css/themes/theme-school.css" rel="stylesheet">
+  <link href="../assets/css/themes/theme-corporate.css" rel="stylesheet">
+  <link href="../assets/css/themes/theme-dark.css" rel="stylesheet">
+</head>
+<body data-page="import" data-base="../" data-sidebar-title="Import Date" data-sidebar-body="Importa profesori din Excel" data-sidebar-badge-text="Batch Upload" data-sidebar-badge-class="warning" data-sidebar-badge-icon="bi-file-earmark-spreadsheet" data-topbar-title="Import Excel" data-topbar-subtitle="Incarca Profesori din Fisier" data-topbar-search="Cauta fisier" data-topbar-cta="Importa" data-topbar-avatar="RA" data-footer-text="Copyright 2026 Admin Scoala. Toate drepturile rezervate.">
+  <div class="app-shell">
+    <aside class="sidebar">
+  <div class="sidebar-header">
+    <a class="brand" href="../index.html">
+      <div class="brand-mark">S</div>
+      <div>
+        <div class="brand-title">Admin Scoala</div>
+        <div class="brand-subtitle">Dashboard</div>
+      </div>
+    </a>
+    <button class="btn btn-light btn-icon d-lg-none" data-sidebar-toggle type="button" aria-label="Deschide meniul">
+      <i class="bi bi-list"></i>
+    </button>
+  </div>
+  <nav class="sidebar-nav">
+    <a class="nav-link" data-page="dashboard" href="../index.html"><i class="bi bi-speedometer2"></i>Dashboard</a>
+    <a class="nav-link" data-page="teachers" href="teachers.html"><i class="bi bi-mortarboard"></i>Profesori</a>
+    <a class="nav-link" data-page="import" href="excel-import.html"><i class="bi bi-file-earmark-spreadsheet"></i>Import</a>
+  </nav>
+  <div class="sidebar-card">
+    <h6 data-sidebar-title>Import Excel</h6>
+    <p class="mb-2" data-sidebar-body>Importa profesori din fisier</p>
+    <div class="badge-soft warning" data-sidebar-badge>
+      <i class="bi bi-file-earmark-spreadsheet" data-sidebar-badge-icon></i>
+      <span data-sidebar-badge-text>Batch Upload</span>
+    </div>
+  </div>
+</aside>
+
+    <div class="app-main">
+      <header class="topbar">
+  <div class="topbar-row">
+    <div class="topbar-title">
+      <h1 data-topbar-title>Import Excel</h1>
+      <span data-topbar-subtitle>Incarca Profesori din Fisier</span>
+    </div>
+    <div class="topbar-user">
+      <select class="form-select form-select-sm" id="theme-select" aria-label="Schimba tema">
+        <option value="school">School</option>
+        <option value="corporate">Corporate</option>
+        <option value="dark">Dark</option>
+      </select>
+    </div>
+  </div>
+</header>
+
+      <main class="content container-fluid">
+        <div class="row g-4">
+          <!-- Upload Section -->
+          <div class="col-lg-6">
+            <div class="app-card p-4">
+              <h5 class="mb-3">
+                <i class="bi bi-cloud-upload"></i> Incarca Fisier Excel
+              </h5>
+
+              <div class="alert alert-info" role="alert">
+                <h6 class="alert-heading"><i class="bi bi-info-circle"></i> Format Acceptat</h6>
+                <p class="mb-2">Fisierele Excel trebuie sa aiba urmatoarele coloane:</p>
+                <ul class="mb-0">
+                  <li><strong>Nume</strong> - Numele complet al profesorului</li>
+                  <li><strong>Disciplina</strong> - Disciplina predata (ex: Matematica)</li>
+                  <li><strong>Rol</strong> - Rol (Coordonator/Titular/Asociat)</li>
+                  <li><strong>Telefon</strong> - Numar de telefon (optional)</li>
+                  <li><strong>CNP</strong> - Cod Numeric Personal (optional)</li>
+                </ul>
+              </div>
+
+              <div class="mb-4">
+                <label class="form-label">Selecteaza Fisier Excel (.xlsx)</label>
+                <input id="file-input" class="form-control" type="file" accept=".xlsx,.xls" onchange="previewFile()">
+                <small class="text-muted d-block mt-2">
+                  Maximum 5MB | Format: .xlsx sau .xls
+                </small>
+              </div>
+
+              <div class="d-grid gap-2">
+                <button class="btn btn-primary" onclick="importData()" id="import-btn" disabled>
+                  <i class="bi bi-download"></i> Importa Date
+                </button>
+                <a class="btn btn-outline-secondary" href="#" onclick="downloadTemplate(); return false;">
+                  <i class="bi bi-download"></i> Descarca Template
+                </a>
+              </div>
+            </div>
+
+            <!-- Progress Section -->
+            <div id="progress-section" class="app-card p-4 mt-4" style="display: none;">
+              <h5 class="mb-3">Progres Import</h5>
+              <div class="progress mb-3" style="height: 25px;">
+                <div id="progress-bar" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 0%">
+                  <span id="progress-text">0%</span>
+                </div>
+              </div>
+              <div id="status-message" class="alert alert-info mb-0">
+                Se proceseaza...
+              </div>
+            </div>
+          </div>
+
+          <!-- Preview Section -->
+          <div class="col-lg-6">
+            <div class="app-card p-4">
+              <h5 class="mb-3">
+                <i class="bi bi-eye"></i> Previzualizare Date
+              </h5>
+
+              <div id="no-file-message" class="alert alert-secondary">
+                <i class="bi bi-file-earmark-spreadsheet"></i> Incarca un fisier Excel pentru a vedea previzualizarea
+              </div>
+
+              <div id="preview-section" style="display: none;">
+                <div class="mb-3">
+                  <label class="form-label">Selecteaza Sheet (Foaia)</label>
+                  <select id="sheet-select" class="form-select" onchange="updatePreview()">
+                  </select>
+                </div>
+
+                <div class="table-responsive">
+                  <table class="table table-sm table-hover" id="preview-table">
+                    <thead>
+                      <tr id="preview-header"></tr>
+                    </thead>
+                    <tbody id="preview-body">
+                    </tbody>
+                  </table>
+                </div>
+
+                <div class="alert alert-warning mb-0">
+                  <strong>Randuri care vor fi importate:</strong>
+                  <span id="row-count">0</span> randuri
+                </div>
+              </div>
+            </div>
+
+            <!-- Summary Section -->
+            <div id="summary-section" class="app-card p-4 mt-4" style="display: none;">
+              <h5 class="mb-3">Rezumat Import</h5>
+              <div class="list-group list-group-flush">
+                <div class="list-group-item d-flex justify-content-between">
+                  <span>Profesori Importati:</span>
+                  <strong id="imported-count">0</strong>
+                </div>
+                <div class="list-group-item d-flex justify-content-between">
+                  <span>Erori:</span>
+                  <strong id="error-count" class="text-danger">0</strong>
+                </div>
+                <div class="list-group-item d-flex justify-content-between">
+                  <span>Avertismente:</span>
+                  <strong id="warning-count" class="text-warning">0</strong>
+                </div>
+              </div>
+              <div class="d-grid gap-2 mt-3">
+                <button class="btn btn-success" onclick="location.href='teachers.html'">
+                  <i class="bi bi-check-circle"></i> Vedeti Profesori
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <footer class="app-footer" data-footer-text>Copyright 2026 Admin Scoala. Toate drepturile rezervate.</footer>
+    </div>
+  </div>
+  <div class="sidebar-overlay"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.min.js"></script>
+  <script src="../assets/js/theme.js"></script>
+  <script src="../assets/js/app.js"></script>
+  <script src="../assets/js/api-integration.js"></script>
+  <script>
+    let workbookData = null;
+
+    // Preview file
+    window.previewFile = () => {
+      const file = document.getElementById('file-input').files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        try {
+          workbookData = XLSX.read(e.target.result, { type: 'binary' });
+
+          // Show preview section
+          document.getElementById('no-file-message').style.display = 'none';
+          document.getElementById('preview-section').style.display = 'block';
+          document.getElementById('import-btn').disabled = false;
+
+          // Populate sheet selector
+          const sheetSelect = document.getElementById('sheet-select');
+          sheetSelect.innerHTML = '';
+          workbookData.SheetNames.forEach((name, idx) => {
+            const option = document.createElement('option');
+            option.value = idx;
+            option.textContent = name;
+            sheetSelect.appendChild(option);
+          });
+
+          updatePreview();
+        } catch (error) {
+          alert('Eroare la citirea fisierului: ' + error.message);
+        }
+      };
+      reader.readAsBinaryString(file);
+    };
+
+    // Update preview table
+    window.updatePreview = () => {
+      if (!workbookData) return;
+
+      const sheetIdx = parseInt(document.getElementById('sheet-select').value || 0);
+      const sheet = workbookData.Sheets[workbookData.SheetNames[sheetIdx]];
+      const data = XLSX.utils.sheet_to_json(sheet);
+
+      if (data.length === 0) {
+        alert('Foaia selectata nu contine date!');
+        return;
+      }
+
+      // Update header
+      const headers = Object.keys(data[0]);
+      const headerHtml = headers.map(h => `<th>${h}</th>`).join('');
+      document.getElementById('preview-header').innerHTML = headerHtml;
+
+      // Update body (first 5 rows)
+      const bodyHtml = data.slice(0, 5).map(row =>
+        `<tr>${headers.map(h => `<td>${row[h] || '-'}</td>`).join('')}</tr>`
+      ).join('');
+      document.getElementById('preview-body').innerHTML = bodyHtml;
+
+      // Update row count
+      document.getElementById('row-count').textContent = data.length;
+    };
+
+    // Import data
+    window.importData = async () => {
+      if (!workbookData) {
+        alert('Incarca un fisier mai intai!');
+        return;
+      }
+
+      // Show progress
+      document.getElementById('progress-section').style.display = 'block';
+      document.getElementById('import-btn').disabled = true;
+
+      const sheetIdx = parseInt(document.getElementById('sheet-select').value || 0);
+      const sheet = workbookData.Sheets[workbookData.SheetNames[sheetIdx]];
+      const data = XLSX.utils.sheet_to_json(sheet);
+
+      let importedCount = 0;
+      let errorCount = 0;
+      let warningCount = 0;
+
+      for (let i = 0; i < data.length; i++) {
+        const row = data[i];
+
+        // Update progress
+        const progress = ((i + 1) / data.length) * 100;
+        document.getElementById('progress-bar').style.width = progress + '%';
+        document.getElementById('progress-text').textContent = Math.round(progress) + '%';
+
+        try {
+          // Validate required fields
+          if (!row.Nume) {
+            warningCount++;
+            continue;
+          }
+
+          // Prepare data
+          const teacherData = {
+            name: row.Nume?.trim() || '',
+            subject: row.Disciplina?.trim() || '',
+            role: row.Rol?.trim() || '',
+            phone: row.Telefon?.trim() || null,
+            notes: row.Observatii?.trim() || null
+          };
+
+          // Create teacher
+          const result = await ApiIntegration.teachers.create(teacherData);
+          if (result) {
+            importedCount++;
+
+            // Create profile if CNP is provided
+            if (row.CNP && result.id) {
+              const profileData = {
+                cnp: row.CNP?.trim(),
+                email: row.Email?.trim() || null,
+                notes: row.Observatii?.trim() || null
+              };
+              await ApiIntegration.request('POST', `/teachers/${result.id}/profile`, profileData);
+            }
+          } else {
+            errorCount++;
+          }
+        } catch (error) {
+          errorCount++;
+          console.error('Import error:', error);
+        }
+
+        // Small delay to avoid overwhelming the server
+        await new Promise(resolve => setTimeout(resolve, 100));
+      }
+
+      // Show results
+      document.getElementById('progress-section').style.display = 'none';
+      document.getElementById('summary-section').style.display = 'block';
+      document.getElementById('imported-count').textContent = importedCount;
+      document.getElementById('error-count').textContent = errorCount;
+      document.getElementById('warning-count').textContent = warningCount;
+
+      alert(`Import finalizat!\n\nImportati: ${importedCount}\nErori: ${errorCount}\nAvertismente: ${warningCount}`);
+    };
+
+    // Download template
+    window.downloadTemplate = () => {
+      // Create sample data
+      const sampleData = [
+        {
+          Nume: 'Prof. Gheorghe Popescu',
+          Disciplina: 'Matematica',
+          Rol: 'Titular',
+          Telefon: '0733123456',
+          CNP: '1850305123456',
+          Email: 'popescu@scoala.ro',
+          Observatii: 'Coordonator disciplina'
+        },
+        {
+          Nume: 'Prof. Maria Ionescu',
+          Disciplina: 'Limba Romana',
+          Rol: 'Coordonator',
+          Telefon: '0721987654',
+          CNP: '2851220456789',
+          Email: 'ionescu@scoala.ro',
+          Observatii: ''
+        }
+      ];
+
+      // Create workbook
+      const wb = XLSX.utils.book_new();
+      const ws = XLSX.utils.json_to_sheet(sampleData);
+      XLSX.utils.book_append_sheet(wb, ws, 'Profesori');
+
+      // Download
+      XLSX.writeFile(wb, 'template-profesori.xlsx');
+    };
+  </script>
+</body>
+</html>
