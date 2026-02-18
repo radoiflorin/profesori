@@ -1,0 +1,453 @@
+<!doctype html>
+<html lang="ro" data-theme="school">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Admin Scoala | Statistici Profesori</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Literata:wght@400;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="../assets/css/app.css" rel="stylesheet">
+  <link href="../assets/css/themes/theme-school.css" rel="stylesheet">
+  <link href="../assets/css/themes/theme-corporate.css" rel="stylesheet">
+  <link href="../assets/css/themes/theme-dark.css" rel="stylesheet">
+</head>
+<body data-page="statistics" data-base="../" data-sidebar-title="Statistici Profesori" data-sidebar-body="Analytics si rapoarte actualizate" data-sidebar-badge-text="Real-time" data-sidebar-badge-class="success" data-sidebar-badge-icon="bi-graph-up" data-topbar-title="Statistici Profesori" data-topbar-subtitle="Analytics si Rapoarte" data-topbar-search="Cauta rapoarte" data-topbar-cta="Export" data-topbar-avatar="RA" data-footer-text="Copyright 2026 Admin Scoala. Toate drepturile rezervate.">
+  <div class="app-shell">
+    <aside class="sidebar">
+  <div class="sidebar-header">
+    <a class="brand" href="../index.html">
+      <div class="brand-mark">S</div>
+      <div>
+        <div class="brand-title">Admin Scoala</div>
+        <div class="brand-subtitle">Dashboard</div>
+      </div>
+    </a>
+    <button class="btn btn-light btn-icon d-lg-none" data-sidebar-toggle type="button" aria-label="Deschide meniul">
+      <i class="bi bi-list"></i>
+    </button>
+  </div>
+  <nav class="sidebar-nav">
+    <a class="nav-link" data-page="dashboard" href="../index.html"><i class="bi bi-speedometer2"></i>Dashboard</a>
+    <a class="nav-link" data-page="teachers" href="teachers.html"><i class="bi bi-mortarboard"></i>Profesori</a>
+    <a class="nav-link" data-page="statistics" href="stats.html"><i class="bi bi-graph-up"></i>Statistici</a>
+    <a class="nav-link" data-page="timetable" href="timetable.html"><i class="bi bi-calendar3"></i>Orar</a>
+  </nav>
+  <div class="sidebar-card">
+    <h6 data-sidebar-title>Statistici Profesori</h6>
+    <p class="mb-2" data-sidebar-body>Analytics si rapoarte actualizate</p>
+    <div class="badge-soft success" data-sidebar-badge>
+      <i class="bi bi-graph-up" data-sidebar-badge-icon></i>
+      <span data-sidebar-badge-text>Real-time</span>
+    </div>
+  </div>
+</aside>
+
+    <div class="app-main">
+      <header class="topbar">
+  <div class="topbar-row">
+    <div class="topbar-title">
+      <h1 data-topbar-title>Statistici Profesori</h1>
+      <span data-topbar-subtitle>Analytics si Rapoarte</span>
+    </div>
+    <div class="topbar-user">
+      <select class="form-select form-select-sm" id="theme-select" aria-label="Schimba tema">
+        <option value="school">School</option>
+        <option value="corporate">Corporate</option>
+        <option value="dark">Dark</option>
+      </select>
+    </div>
+  </div>
+</header>
+
+      <main class="content container-fluid">
+        <div class="page-toolbar">
+  <div class="d-flex gap-2">
+    <button class="btn btn-outline-primary btn-sm" onclick="refreshStats()">
+      <i class="bi bi-arrow-clockwise"></i> Refresh
+    </button>
+    <button class="btn btn-primary btn-sm" onclick="exportStats()">
+      <i class="bi bi-download"></i> Export CSV
+    </button>
+  </div>
+</div>
+
+        <!-- Key Metrics -->
+        <div class="row g-4 mb-4">
+          <div class="col-md-3">
+            <div class="stat-card">
+              <div>
+                <small>Total Profesori</small>
+                <h3 id="total-teachers">-</h3>
+              </div>
+              <div class="stat-icon"><i class="bi bi-people-fill"></i></div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="stat-card">
+              <div>
+                <small>Ore Total / Saptamana</small>
+                <h3 id="total-hours">-</h3>
+              </div>
+              <div class="stat-icon"><i class="bi bi-clock-fill"></i></div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="stat-card">
+              <div>
+                <small>Discipline Unice</small>
+                <h3 id="total-subjects">-</h3>
+              </div>
+              <div class="stat-icon"><i class="bi bi-book-fill"></i></div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="stat-card">
+              <div>
+                <small>Ore Saptamana Medie</small>
+                <h3 id="avg-hours">-</h3>
+              </div>
+              <div class="stat-icon"><i class="bi bi-calculator-fill"></i></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Charts Row 1 -->
+        <div class="row g-4 mb-4">
+          <div class="col-lg-6">
+            <div class="chart-card h-100">
+              <h5 class="mb-3">Profesori pe Disciplina</h5>
+              <div class="chart-canvas">
+                <canvas id="subjectChart" role="img" aria-label="Profesori pe disciplina"></canvas>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="chart-card h-100">
+              <h5 class="mb-3">Distribuire pe Rol</h5>
+              <div class="chart-canvas">
+                <canvas id="roleChart" role="img" aria-label="Distribuire pe rol"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Charts Row 2 -->
+        <div class="row g-4 mb-4">
+          <div class="col-lg-6">
+            <div class="chart-card h-100">
+              <h5 class="mb-3">Ore de Predare (TC+CD)</h5>
+              <div class="chart-canvas">
+                <canvas id="hoursChart" role="img" aria-label="Ore de predare"></canvas>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="chart-card h-100">
+              <h5 class="mb-3">Orar - Distribuire Zile</h5>
+              <div class="chart-canvas">
+                <canvas id="timetableChart" role="img" aria-label="Orar distribuire"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Data Table -->
+        <div class="row g-4">
+          <div class="col-12">
+            <div class="app-card p-4">
+              <h5 class="mb-3">Raport Detaliat - Profesori</h5>
+              <div class="table-responsive">
+                <table class="table align-middle table-hover" id="report-table">
+                  <thead>
+                    <tr>
+                      <th>Profesor</th>
+                      <th>Disciplina</th>
+                      <th>Rol</th>
+                      <th>Ore/Saptamana</th>
+                      <th>Ore TC</th>
+                      <th>Ore CD</th>
+                      <th>Ore Orar</th>
+                    </tr>
+                  </thead>
+                  <tbody id="report-tbody">
+                    <tr><td colspan="7" class="text-center text-muted">Incarcare date...</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <footer class="app-footer" data-footer-text>Copyright 2026 Admin Scoala. Toate drepturile rezervate.</footer>
+    </div>
+  </div>
+  <div class="sidebar-overlay"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.js"></script>
+  <script src="../assets/js/theme.js"></script>
+  <script src="../assets/js/app.js"></script>
+  <script src="../assets/js/api-integration.js"></script>
+  <script>
+    let charts = {};
+
+    // Load stats on page load
+    window.addEventListener('load', async () => {
+      await loadStats();
+    });
+
+    // Refresh stats
+    window.refreshStats = async () => {
+      document.querySelectorAll('.chart-canvas').forEach(canvas => {
+        canvas.style.opacity = '0.5';
+      });
+      await loadStats();
+      document.querySelectorAll('.chart-canvas').forEach(canvas => {
+        canvas.style.opacity = '1';
+      });
+    };
+
+    // Load all statistics
+    async function loadStats() {
+      const teachers = await ApiIntegration.teachers.getAll();
+      const timetables = await ApiIntegration.timetables.getAll();
+
+      if (!teachers) {
+        alert('Eroare la incarcare date!');
+        return;
+      }
+
+      // Calculate metrics
+      const metrics = calculateMetrics(teachers, timetables || []);
+      updateMetrics(metrics);
+      updateCharts(teachers, timetables || [], metrics);
+      updateTable(teachers, timetables || []);
+    }
+
+    // Calculate statistics
+    function calculateMetrics(teachers, timetables) {
+      const metrics = {
+        totalTeachers: teachers.length,
+        totalHours: 0,
+        subjects: new Set(),
+        avgHours: 0,
+        hoursPerTeacher: {},
+        roleDistribution: {},
+        subjectDistribution: {},
+        timetableByDay: {}
+      };
+
+      teachers.forEach(teacher => {
+        if (teacher.subject) metrics.subjects.add(teacher.subject);
+        if (teacher.role) {
+          metrics.roleDistribution[teacher.role] = (metrics.roleDistribution[teacher.role] || 0) + 1;
+        }
+        if (teacher.subject) {
+          metrics.subjectDistribution[teacher.subject] = (metrics.subjectDistribution[teacher.subject] || 0) + 1;
+        }
+      });
+
+      timetables.forEach(tt => {
+        metrics.timetableByDay[tt.day] = (metrics.timetableByDay[tt.day] || 0) + 1;
+      });
+
+      metrics.totalSubjects = metrics.subjects.size;
+
+      return metrics;
+    }
+
+    // Update metric cards
+    function updateMetrics(metrics) {
+      document.getElementById('total-teachers').textContent = metrics.totalTeachers;
+      document.getElementById('total-hours').textContent = '-'; // Would need profile data
+      document.getElementById('total-subjects').textContent = metrics.totalSubjects;
+      document.getElementById('avg-hours').textContent = '-'; // Would need profile data
+    }
+
+    // Update charts
+    function updateCharts(teachers, timetables, metrics) {
+      const getChartDefaults = () => {
+        const styles = getComputedStyle(document.documentElement);
+        return {
+          primary: styles.getPropertyValue('--app-primary').trim(),
+          secondary: styles.getPropertyValue('--app-secondary').trim(),
+          muted: styles.getPropertyValue('--app-muted').trim(),
+          border: styles.getPropertyValue('--app-border').trim(),
+        };
+      };
+
+      const theme = getChartDefaults();
+
+      // Subject Distribution Chart
+      createChart('subjectChart', {
+        type: 'bar',
+        data: {
+          labels: Object.keys(metrics.subjectDistribution),
+          datasets: [{
+            label: 'Profesori',
+            data: Object.values(metrics.subjectDistribution),
+            backgroundColor: theme.primary,
+            borderRadius: 8
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { display: false } },
+          scales: {
+            y: { beginAtZero: true, grid: { color: theme.border } }
+          }
+        }
+      });
+
+      // Role Distribution Chart
+      createChart('roleChart', {
+        type: 'doughnut',
+        data: {
+          labels: Object.keys(metrics.roleDistribution),
+          datasets: [{
+            data: Object.values(metrics.roleDistribution),
+            backgroundColor: [theme.primary, theme.secondary, '#ffc107', '#17a2b8'],
+            borderRadius: 8
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { position: 'bottom' } }
+        }
+      });
+
+      // Hours Distribution (Mock)
+      createChart('hoursChart', {
+        type: 'bar',
+        data: {
+          labels: teachers.slice(0, 5).map(t => t.name),
+          datasets: [{
+            label: 'Ore',
+            data: [18, 15, 20, 12, 16],
+            backgroundColor: theme.secondary,
+            borderRadius: 8
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { display: false } },
+          scales: {
+            y: { beginAtZero: true }
+          }
+        }
+      });
+
+      // Timetable by Day
+      createChart('timetableChart', {
+        type: 'line',
+        data: {
+          labels: ['Luni', 'Marti', 'Miercuri', 'Joi', 'Vineri'],
+          datasets: [{
+            label: 'Ore pe Zi',
+            data: [
+              metrics.timetableByDay['Luni'] || 0,
+              metrics.timetableByDay['Marti'] || 0,
+              metrics.timetableByDay['Miercuri'] || 0,
+              metrics.timetableByDay['Joi'] || 0,
+              metrics.timetableByDay['Vineri'] || 0
+            ],
+            borderColor: theme.secondary,
+            backgroundColor: `rgba(${hexToRgb(theme.secondary)}, 0.1)`,
+            fill: true,
+            tension: 0.35,
+            pointRadius: 5,
+            pointBackgroundColor: theme.secondary
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { display: false } },
+          scales: {
+            y: { beginAtZero: true }
+          }
+        }
+      });
+    }
+
+    // Create or update chart
+    function createChart(canvasId, config) {
+      const canvas = document.getElementById(canvasId);
+      if (!canvas) return;
+
+      if (charts[canvasId]) {
+        charts[canvasId].destroy();
+      }
+
+      charts[canvasId] = new Chart(canvas, config);
+    }
+
+    // Hex to RGB helper
+    function hexToRgb(hex) {
+      const cleanHex = hex.replace('#', '').trim();
+      if (cleanHex.length !== 6) return '0,0,0';
+      const r = parseInt(cleanHex.slice(0, 2), 16);
+      const g = parseInt(cleanHex.slice(2, 4), 16);
+      const b = parseInt(cleanHex.slice(4, 6), 16);
+      return `${r},${g},${b}`;
+    }
+
+    // Update table
+    function updateTable(teachers, timetables) {
+      const tbody = document.getElementById('report-tbody');
+      tbody.innerHTML = teachers.map(teacher => {
+        const teacherTimetables = timetables.filter(t => t.teacher_id === teacher.id);
+        return `
+          <tr>
+            <td><strong>${teacher.name}</strong></td>
+            <td>${teacher.subject || 'N/A'}</td>
+            <td>${teacher.role || 'N/A'}</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>${teacherTimetables.length}</td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    // Export stats
+    window.exportStats = () => {
+      const table = document.getElementById('report-table');
+      let csv = [];
+
+      // Header
+      const headers = [];
+      table.querySelectorAll('thead th').forEach(th => {
+        headers.push(`"${th.textContent.trim()}"`);
+      });
+      csv.push(headers.join(','));
+
+      // Rows
+      table.querySelectorAll('tbody tr').forEach(tr => {
+        const cells = [];
+        tr.querySelectorAll('td').forEach(td => {
+          cells.push(`"${td.textContent.trim()}"`);
+        });
+        csv.push(cells.join(','));
+      });
+
+      // Download
+      const blob = new Blob([csv.join('\n')], { type: 'text/csv' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = `statistici-profesori-${new Date().toISOString().split('T')[0]}.csv`;
+      link.click();
+      URL.revokeObjectURL(url);
+    };
+  </script>
+</body>
+</html>
