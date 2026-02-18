@@ -1,0 +1,438 @@
+<!doctype html>
+<html lang="ro" data-theme="school">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Admin Scoala | Profil Profesor - Fisa de Incadrare</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Literata:wght@400;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="../assets/css/app.css" rel="stylesheet">
+  <link href="../assets/css/themes/theme-school.css" rel="stylesheet">
+  <link href="../assets/css/themes/theme-corporate.css" rel="stylesheet">
+  <link href="../assets/css/themes/theme-dark.css" rel="stylesheet">
+</head>
+<body data-page="teachers" data-base="../" data-sidebar-title="Profil Profesor" data-sidebar-body="Fisa de incadrare - date oficiale" data-sidebar-badge-text="Completat" data-sidebar-badge-class="success" data-sidebar-badge-icon="bi-check-circle" data-topbar-title="Profil Profesor" data-topbar-subtitle="Fisa de Incadrare Didactice" data-topbar-search="Cauta date" data-topbar-cta="Salveaza" data-topbar-avatar="RA" data-footer-text="Copyright 2026 Admin Scoala. Toate drepturile rezervate.">
+  <div class="app-shell">
+    <aside class="sidebar">
+  <div class="sidebar-header">
+    <a class="brand" href="../index.html">
+      <div class="brand-mark">S</div>
+      <div>
+        <div class="brand-title">Admin Scoala</div>
+        <div class="brand-subtitle">Dashboard</div>
+      </div>
+    </a>
+    <button class="btn btn-light btn-icon d-lg-none" data-sidebar-toggle type="button" aria-label="Deschide meniul">
+      <i class="bi bi-list"></i>
+    </button>
+  </div>
+  <div class="sidebar-search">
+    <input class="form-control" type="text" placeholder="Cauta elev, clasa, profesor" aria-label="Cauta in scoala">
+  </div>
+  <nav class="sidebar-nav">
+    <a class="nav-link" data-page="dashboard" href="../index.html"><i class="bi bi-speedometer2"></i>Dashboard</a>
+    <a class="nav-link" data-page="students" href="../pages/students.html"><i class="bi bi-people"></i>Elevi</a>
+    <a class="nav-link" data-page="teachers" href="../pages/teachers.html"><i class="bi bi-mortarboard"></i>Profesori</a>
+    <a class="nav-link" data-page="timetable" href="../pages/timetable.html"><i class="bi bi-calendar3"></i>Orar</a>
+    <a class="nav-link" data-page="settings" href="../pages/settings.html"><i class="bi bi-gear"></i>Setari</a>
+  </nav>
+  <div class="sidebar-card">
+    <h6 data-sidebar-title>Profil Profesor</h6>
+    <p class="mb-2" data-sidebar-body>Fisa de incadrare - date oficiale</p>
+    <div class="badge-soft success" data-sidebar-badge>
+      <i class="bi bi-check-circle" data-sidebar-badge-icon></i>
+      <span data-sidebar-badge-text>Completat</span>
+    </div>
+  </div>
+</aside>
+
+    <div class="app-main">
+      <header class="topbar">
+  <div class="topbar-row">
+    <div class="topbar-title">
+      <h1 data-topbar-title>Profil Profesor</h1>
+      <span data-topbar-subtitle>Fisa de Incadrare Didactice</span>
+    </div>
+    <div class="topbar-user">
+      <select class="form-select form-select-sm" id="theme-select" aria-label="Schimba tema">
+        <option value="school">School</option>
+        <option value="corporate">Corporate</option>
+        <option value="dark">Dark</option>
+      </select>
+      <button class="avatar" type="button" data-menu-toggle="user" aria-label="Meniu utilizator" data-topbar-avatar>RA</button>
+    </div>
+  </div>
+</header>
+
+      <main class="content container-fluid">
+        <div class="page-toolbar">
+  <div class="inline-search">
+    <i class="bi bi-search"></i>
+    <input class="form-control" type="text" data-topbar-search placeholder="Cauta date" aria-label="Cauta date">
+  </div>
+  <div class="d-flex gap-2">
+    <a class="btn btn-outline-secondary btn-sm" href="teachers.html">Inapoi</a>
+    <button class="btn btn-primary btn-sm" onclick="saveProfile()">Salveaza</button>
+  </div>
+</div>
+
+        <div class="row g-4">
+          <!-- Personal Information -->
+          <div class="col-lg-6">
+            <div class="app-card p-4">
+              <h5 class="mb-3">
+                <i class="bi bi-person-fill"></i> Date Personale
+              </h5>
+              <form id="profile-form" class="row g-3">
+                <div class="col-md-6">
+                  <label class="form-label">CNP</label>
+                  <input id="cnp" class="form-control" type="text" placeholder="1850305123456">
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Sex</label>
+                  <select id="gender" class="form-select">
+                    <option value="">-- Selecteaza --</option>
+                    <option value="M">Masculin</option>
+                    <option value="F">Feminin</option>
+                  </select>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Data Nasterii</label>
+                  <input id="date_of_birth" class="form-control" type="date">
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Initials Tatalui</label>
+                  <input id="father_initial" class="form-control" type="text" placeholder="A" maxlength="1">
+                </div>
+                <div class="col-12">
+                  <label class="form-label">Loc Nasterii (Localitate, Judet)</label>
+                  <input id="birthplace" class="form-control" type="text" placeholder="Ex: Bucuresti, Bucuresti">
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Stare Civila</label>
+                  <select id="civil_status" class="form-select">
+                    <option value="">-- Selecteaza --</option>
+                    <option value="Necăsătorit">Necăsătorit</option>
+                    <option value="Căsătorit">Căsătorit</option>
+                    <option value="Divorțat">Divorțat</option>
+                    <option value="Văduv">Văduv</option>
+                  </select>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Email</label>
+                  <input id="email" class="form-control" type="email" placeholder="profesor@scoala.ro">
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <!-- Professional Information -->
+          <div class="col-lg-6">
+            <div class="app-card p-4">
+              <h5 class="mb-3">
+                <i class="bi bi-briefcase-fill"></i> Date Profesionale
+              </h5>
+              <form class="row g-3">
+                <div class="col-12">
+                  <label class="form-label">Functia Didactica</label>
+                  <input id="didactic_function" class="form-control" type="text" placeholder="Ex: Profesor, Lector">
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Specializarea Principala</label>
+                  <input id="specialization_1" class="form-control" type="text" placeholder="Ex: Matematica">
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Specializarea 2</label>
+                  <input id="specialization_2" class="form-control" type="text" placeholder="Optionala">
+                </div>
+                <div class="col-12">
+                  <label class="form-label">Specializarea 3</label>
+                  <input id="specialization_3" class="form-control" type="text" placeholder="Optionala">
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Ultimul Grad Didactic Obtinut</label>
+                  <select id="last_didactic_degree" class="form-select">
+                    <option value="">-- Selecteaza --</option>
+                    <option value="Grad I">Grad I</option>
+                    <option value="Grad II">Grad II</option>
+                    <option value="Grad III">Grad III</option>
+                    <option value="Doctorat">Doctorat</option>
+                  </select>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Disponibil pentru Consulturi</label>
+                  <div class="form-check form-switch mt-2">
+                    <input id="available_for_consulting" class="form-check-input" type="checkbox">
+                    <label class="form-check-label" for="available_for_consulting">Da</label>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <!-- Educational Information -->
+          <div class="col-lg-6">
+            <div class="app-card p-4">
+              <h5 class="mb-3">
+                <i class="bi bi-book-fill"></i> Educatie
+              </h5>
+              <form class="row g-3">
+                <div class="col-md-6">
+                  <label class="form-label">Universitatea</label>
+                  <input id="university" class="form-control" type="text" placeholder="Ex: Universitatea din Bucuresti">
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Facultatea</label>
+                  <input id="faculty" class="form-control" type="text" placeholder="Ex: Facultatea de Matematica">
+                </div>
+                <div class="col-12">
+                  <label class="form-label">Anul Absolvirii</label>
+                  <input id="graduation_year" class="form-control" type="number" placeholder="Ex: 2008" min="1950" max="2100">
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <!-- Employment Information -->
+          <div class="col-lg-6">
+            <div class="app-card p-4">
+              <h5 class="mb-3">
+                <i class="bi bi-clock-fill"></i> Incadrare si Ore
+              </h5>
+              <form class="row g-3">
+                <div class="col-md-6">
+                  <label class="form-label">Modul de Incadrare</label>
+                  <select id="framing_mode" class="form-select">
+                    <option value="">-- Selecteaza --</option>
+                    <option value="Titular">Titular</option>
+                    <option value="Suplinitor">Suplinitor</option>
+                    <option value="Contractual">Contractual</option>
+                    <option value="Pensionat">Pensionat</option>
+                  </select>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Pensionat</label>
+                  <div class="form-check form-switch mt-2">
+                    <input id="is_pensioned" class="form-check-input" type="checkbox">
+                    <label class="form-check-label" for="is_pensioned">Da</label>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Ore Total / Saptamana</label>
+                  <input id="total_hours_per_week" class="form-control" type="number" placeholder="Ex: 18" min="0">
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Ore TC (Teaching Core)</label>
+                  <input id="teaching_core_hours" class="form-control" type="number" placeholder="Ex: 12" min="0">
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Ore CD (Complementary)</label>
+                  <input id="complementary_hours" class="form-control" type="number" placeholder="Ex: 4" min="0">
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Alte Ore</label>
+                  <input id="other_hours" class="form-control" type="number" placeholder="Ex: 2" min="0">
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <!-- Framing/Decision Information -->
+          <div class="col-lg-6">
+            <div class="app-card p-4">
+              <h5 class="mb-3">
+                <i class="bi bi-file-text-fill"></i> Decizie de Incadrare
+              </h5>
+              <form class="row g-3">
+                <div class="col-md-6">
+                  <label class="form-label">Numarul Deciziei</label>
+                  <input id="decision_number" class="form-control" type="text" placeholder="Ex: 123/2023">
+                </div>
+                <div class="col-md-6">
+                  <label class="form-label">Data Emiterii</label>
+                  <input id="decision_date" class="form-control" type="date">
+                </div>
+                <div class="col-12">
+                  <label class="form-label">Emitentul Deciziei</label>
+                  <input id="decision_issuer" class="form-control" type="text" placeholder="Ex: Inspectoratul Scolar Judetean">
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <!-- School Assignment -->
+          <div class="col-lg-12">
+            <div class="app-card p-4">
+              <h5 class="mb-3">
+                <i class="bi bi-building"></i> Locul de Munca
+              </h5>
+              <form class="row g-3">
+                <div class="col-md-6">
+                  <label class="form-label">Unitatea de Invatamant</label>
+                  <input id="unit_with_legal_personality" class="form-control" type="text" placeholder="Ex: Liceul Teoretic 'N. Balcescu'">
+                </div>
+                <div class="col-md-3">
+                  <label class="form-label">Localitate</label>
+                  <input id="locality" class="form-control" type="text" placeholder="Ex: Bucuresti">
+                </div>
+                <div class="col-md-3">
+                  <label class="form-label">Mediu</label>
+                  <select id="environment" class="form-select">
+                    <option value="">-- Selecteaza --</option>
+                    <option value="Urban">Urban</option>
+                    <option value="Rural">Rural</option>
+                  </select>
+                </div>
+                <div class="col-12">
+                  <label class="form-label">Note Aditionale</label>
+                  <textarea id="notes" class="form-control" rows="3" placeholder="Note sau observatii suplimentare"></textarea>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="col-12">
+            <div class="d-flex gap-2 justify-content-end">
+              <a class="btn btn-outline-secondary" href="teachers.html">Anuleaza</a>
+              <button class="btn btn-primary" onclick="saveProfile()">Salveaza Profil</button>
+              <button class="btn btn-success" onclick="exportPDF()">
+                <i class="bi bi-file-pdf"></i> Export PDF
+              </button>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <footer class="app-footer" data-footer-text>Copyright 2026 Admin Scoala. Toate drepturile rezervate.</footer>
+    </div>
+  </div>
+  <div class="sidebar-overlay"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <script src="../assets/js/theme.js"></script>
+  <script src="../assets/js/app.js"></script>
+  <script src="../assets/js/api-integration.js"></script>
+  <script>
+    // Get teacher ID from URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const teacherId = urlParams.get('id');
+
+    // Load profile data
+    window.addEventListener('load', async () => {
+      if (!teacherId) {
+        alert('Teacher ID not found');
+        window.location.href = 'teachers.html';
+        return;
+      }
+
+      const profile = await ApiIntegration.request('GET', `/teachers/${teacherId}/profile`);
+      if (profile) {
+        loadProfileData(profile);
+      }
+    });
+
+    // Load profile data into form
+    function loadProfileData(profile) {
+      document.getElementById('cnp').value = profile.cnp || '';
+      document.getElementById('gender').value = profile.gender || '';
+      document.getElementById('date_of_birth').value = profile.date_of_birth || '';
+      document.getElementById('father_initial').value = profile.father_initial || '';
+      document.getElementById('birthplace').value = profile.birthplace || '';
+      document.getElementById('civil_status').value = profile.civil_status || '';
+      document.getElementById('email').value = profile.email || '';
+
+      document.getElementById('didactic_function').value = profile.didactic_function || '';
+      document.getElementById('specialization_1').value = profile.specialization_1 || '';
+      document.getElementById('specialization_2').value = profile.specialization_2 || '';
+      document.getElementById('specialization_3').value = profile.specialization_3 || '';
+      document.getElementById('last_didactic_degree').value = profile.last_didactic_degree || '';
+      document.getElementById('available_for_consulting').checked = profile.available_for_consulting || false;
+
+      document.getElementById('university').value = profile.university || '';
+      document.getElementById('faculty').value = profile.faculty || '';
+      document.getElementById('graduation_year').value = profile.graduation_year || '';
+
+      document.getElementById('framing_mode').value = profile.framing_mode || '';
+      document.getElementById('is_pensioned').checked = profile.is_pensioned || false;
+      document.getElementById('total_hours_per_week').value = profile.total_hours_per_week || '';
+      document.getElementById('teaching_core_hours').value = profile.teaching_core_hours || '';
+      document.getElementById('complementary_hours').value = profile.complementary_hours || '';
+      document.getElementById('other_hours').value = profile.other_hours || '';
+
+      document.getElementById('decision_number').value = profile.decision_number || '';
+      document.getElementById('decision_date').value = profile.decision_date || '';
+      document.getElementById('decision_issuer').value = profile.decision_issuer || '';
+
+      document.getElementById('unit_with_legal_personality').value = profile.unit_with_legal_personality || '';
+      document.getElementById('locality').value = profile.locality || '';
+      document.getElementById('environment').value = profile.environment || '';
+      document.getElementById('notes').value = profile.notes || '';
+    }
+
+    // Save profile
+    window.saveProfile = async () => {
+      const data = {
+        cnp: document.getElementById('cnp').value || null,
+        gender: document.getElementById('gender').value || null,
+        date_of_birth: document.getElementById('date_of_birth').value || null,
+        father_initial: document.getElementById('father_initial').value || null,
+        birthplace: document.getElementById('birthplace').value || null,
+        civil_status: document.getElementById('civil_status').value || null,
+        email: document.getElementById('email').value || null,
+
+        didactic_function: document.getElementById('didactic_function').value || null,
+        specialization_1: document.getElementById('specialization_1').value || null,
+        specialization_2: document.getElementById('specialization_2').value || null,
+        specialization_3: document.getElementById('specialization_3').value || null,
+        last_didactic_degree: document.getElementById('last_didactic_degree').value || null,
+        available_for_consulting: document.getElementById('available_for_consulting').checked,
+
+        university: document.getElementById('university').value || null,
+        faculty: document.getElementById('faculty').value || null,
+        graduation_year: parseInt(document.getElementById('graduation_year').value) || null,
+
+        framing_mode: document.getElementById('framing_mode').value || null,
+        is_pensioned: document.getElementById('is_pensioned').checked,
+        total_hours_per_week: parseInt(document.getElementById('total_hours_per_week').value) || null,
+        teaching_core_hours: parseInt(document.getElementById('teaching_core_hours').value) || null,
+        complementary_hours: parseInt(document.getElementById('complementary_hours').value) || null,
+        other_hours: parseInt(document.getElementById('other_hours').value) || null,
+
+        decision_number: document.getElementById('decision_number').value || null,
+        decision_date: document.getElementById('decision_date').value || null,
+        decision_issuer: document.getElementById('decision_issuer').value || null,
+
+        unit_with_legal_personality: document.getElementById('unit_with_legal_personality').value || null,
+        locality: document.getElementById('locality').value || null,
+        environment: document.getElementById('environment').value || null,
+        notes: document.getElementById('notes').value || null,
+      };
+
+      const result = await ApiIntegration.request('PUT', `/teachers/${teacherId}/profile`, data);
+      if (result) {
+        alert('Profil salvat cu succes!');
+      } else {
+        alert('Eroare la salvare!');
+      }
+    };
+
+    // Export to PDF
+    window.exportPDF = () => {
+      const element = document.querySelector('.app-main');
+      const opt = {
+        margin: 10,
+        filename: `profil-profesor-${teacherId}.pdf`,
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2 },
+        jsPDF: { orientation: 'portrait', unit: 'mm', format: 'a4' }
+      };
+      html2pdf().set(opt).from(element).save();
+    };
+  </script>
+</body>
+</html>

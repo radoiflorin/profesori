@@ -68,6 +68,22 @@ const ApiIntegration = (() => {
     }
   };
 
+  // Teacher Profiles API
+  const profiles = {
+    async get(teacherId) {
+      return await request('GET', `/teachers/${teacherId}/profile`);
+    },
+    async save(teacherId, data) {
+      return await request('POST', `/teachers/${teacherId}/profile`, data);
+    },
+    async update(teacherId, data) {
+      return await request('PUT', `/teachers/${teacherId}/profile`, data);
+    },
+    async delete(teacherId) {
+      return await request('DELETE', `/teachers/${teacherId}/profile`);
+    }
+  };
+
   // DOM Population helpers
   const dom = {
     populateTeachersTable(selector, teachers) {
@@ -88,7 +104,7 @@ const ApiIntegration = (() => {
           <td>${teacher.phone || 'N/A'}</td>
           <td class="text-end">
             <div class="table-actions">
-              <a class="btn btn-sm btn-outline-primary" href="pages/teacher-detail.html?id=${teacher.id}">Detalii</a>
+              <a class="btn btn-sm btn-outline-info" href="pages/teacher-profile.html?id=${teacher.id}">Profil</a>
               <a class="btn btn-sm btn-outline-secondary" href="pages/teacher-edit.html?id=${teacher.id}">Editeaza</a>
               <button class="btn btn-sm btn-outline-danger" onclick="ApiIntegration.deleteTeacher(${teacher.id})">Sterge</button>
             </div>
@@ -159,6 +175,7 @@ const ApiIntegration = (() => {
     API_BASE,
     teachers,
     timetables,
+    profiles,
     dom,
     deleteTeacher,
     request
