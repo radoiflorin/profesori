@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="en-GB" data-theme="school">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>School Admin | Teachers</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Literata:wght@400;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="../assets/css/app.css" rel="stylesheet">
+  <link href="../assets/css/themes/theme-school.css" rel="stylesheet">
+  <link href="../assets/css/themes/theme-corporate.css" rel="stylesheet">
+  <link href="../assets/css/themes/theme-dark.css" rel="stylesheet">
+</head>
+<body data-page="teachers" data-base="../" data-sidebar-title="Available teachers" data-sidebar-body="12 teachers are available for cover." data-sidebar-badge-text="Check timetable" data-sidebar-badge-class="warning" data-sidebar-badge-icon="bi-clock" data-topbar-title="Teachers" data-topbar-subtitle="Teaching team and active subjects" data-topbar-search="Search teacher or subject" data-topbar-cta="Add teacher" data-topbar-cta-href="teacher-add.html" data-topbar-avatar="RA" data-footer-text="Copyright 2026 School Admin. All rights reserved.">
+  <div class="app-shell">
+    <aside class="sidebar">
+  <div class="sidebar-header">
+    <a class="brand" href="../index.html">
+      <div class="brand-mark">S</div>
+      <div>
+        <div class="brand-title">School Admin</div>
+        <div class="brand-subtitle">Dashboard</div>
+      </div>
+    </a>
+    <button class="btn btn-light btn-icon d-lg-none" data-sidebar-toggle type="button" aria-label="Open menu">
+      <i class="bi bi-list"></i>
+    </button>
+  </div>
+  <div class="sidebar-search">
+    <input class="form-control" type="text" placeholder="Search student, class, teacher" aria-label="Search in school">
+  </div>
+  <nav class="sidebar-nav">
+    <a class="nav-link" data-page="dashboard" href="../index.html"><i class="bi bi-speedometer2"></i>Dashboard</a>
+    <a class="nav-link" data-page="students" href="../pages/students.html"><i class="bi bi-people"></i>Students</a>
+    <a class="nav-link" data-page="student-detail" href="../pages/student-detail.html"><i class="bi bi-person-badge"></i>Student detail</a>
+    <a class="nav-link" data-page="teachers" href="../pages/teachers.html"><i class="bi bi-mortarboard"></i>Teachers</a>
+    <a class="nav-link" data-page="classes" href="../pages/classes.html"><i class="bi bi-grid"></i>Classes</a>
+    <a class="nav-link" data-page="timetable" href="../pages/timetable.html"><i class="bi bi-calendar3"></i>Timetable</a>
+    <a class="nav-link" data-page="grades" href="../pages/grades.html"><i class="bi bi-bar-chart"></i>Grades</a>
+    <a class="nav-link" data-page="attendance" href="../pages/attendance.html"><i class="bi bi-check2-square"></i>Attendance</a>
+    <a class="nav-link" data-page="messages" href="../pages/messages.html"><i class="bi bi-chat-dots"></i>Messages</a>
+    <a class="nav-link" data-page="calendar" href="../pages/calendar.html"><i class="bi bi-calendar-event"></i>Calendar</a>
+    <a class="nav-link" data-page="settings" href="../pages/settings.html"><i class="bi bi-gear"></i>Settings</a>
+    <a class="nav-link" data-page="login" href="../pages/login.html"><i class="bi bi-person"></i>Login</a>
+    <a class="nav-link" data-page="not-found" href="../pages/404.html"><i class="bi bi-exclamation-triangle"></i>404</a>
+  </nav>
+  <div class="sidebar-card">
+    <h6 data-sidebar-title>Available teachers</h6>
+    <p class="mb-2" data-sidebar-body>12 teachers are available for cover.</p>
+    <div class="badge-soft success" data-sidebar-badge>
+      <i class="bi bi-check-circle" data-sidebar-badge-icon></i>
+      <span data-sidebar-badge-text>Check timetable</span>
+    </div>
+  </div>
+</aside>
+
+
+
+
+
+
+
+    <div class="app-main">
+      <header class="topbar">
+  <div class="topbar-row">
+    <div class="topbar-title">
+      <h1 data-topbar-title>Teachers</h1>
+      <span data-topbar-subtitle>Teaching team and active subjects</span>
+    </div>
+    <div class="topbar-user">
+      <div class="topbar-menu">
+        <button class="btn btn-light btn-icon" type="button" data-menu-toggle="chat" aria-label="Open chat">
+          <i class="bi bi-chat-dots"></i>
+        </button>
+        <div class="topbar-dropdown" data-menu="chat">
+          <div class="topbar-dropdown-header">
+            <div>
+              <strong>Messages</strong>
+              <div class="text-muted small">3 new</div>
+            </div>
+            <a class="btn btn-sm btn-outline-primary" href="../pages/messages.html">View all</a>
+          </div>
+          <div class="topbar-dropdown-body">
+            <div class="topbar-item">
+              <div>
+                <strong>School office</strong>
+                <div class="text-muted small">Social scholarship documents</div>
+              </div>
+              <span class="badge-soft warning">New</span>
+            </div>
+            <div class="topbar-item">
+              <div>
+                <strong>Form tutor 10B</strong>
+                <div class="text-muted small">Repeated student absences</div>
+              </div>
+              <span class="badge-soft danger">Urgent</span>
+            </div>
+            <div class="topbar-item">
+              <div>
+                <strong>Biology teacher</strong>
+                <div class="text-muted small">Project proposal</div>
+              </div>
+              <span class="badge-soft success">Resolved</span>
+            </div>
+          </div>
+          <div class="topbar-dropdown-footer">
+            <button class="btn btn-primary w-100" type="button">Compose message</button>
+          </div>
+        </div>
+      </div>
+      <select class="form-select form-select-sm" id="theme-select" aria-label="Switch theme">
+        <option value="school">School</option>
+        <option value="corporate">Corporate</option>
+        <option value="dark">Dark</option>
+      </select>
+      <a class="btn btn-light btn-sm lang-toggle" data-lang-toggle href="#" aria-label="Switch to Romanian">RO</a>
+      <div class="topbar-menu">
+        <button class="avatar" type="button" data-menu-toggle="user" aria-label="User menu" data-topbar-avatar>RA</button>
+        <div class="topbar-dropdown" data-menu="user">
+          <div class="topbar-dropdown-header">
+            <div>
+              <strong>Administrator</strong>
+              <div class="text-muted small">admin@school.uk</div>
+            </div>
+          </div>
+          <div class="topbar-dropdown-body">
+            <a class="topbar-link" href="../pages/settings.html"><i class="bi bi-gear"></i>Account settings</a>
+            <a class="topbar-link" href="../pages/teacher-detail.html"><i class="bi bi-person-badge"></i>My profile</a>
+            <a class="topbar-link" href="../pages/attendance.html"><i class="bi bi-check2-square"></i>Absence approvals</a>
+          </div>
+          <div class="topbar-dropdown-footer">
+            <a class="btn btn-outline-danger w-100" href="../pages/login.html">Sign out</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+
+
+
+
+      <main class="content container-fluid">
+        <div class="page-toolbar">
+  <div class="inline-search">
+    <i class="bi bi-search"></i>
+    <input class="form-control" type="text" data-topbar-search placeholder="Search teacher or subject" aria-label="Search teacher or subject">
+  </div>
+  <a class="btn btn-primary btn-sm" data-topbar-cta data-topbar-cta-href="teacher-add.html" href="teacher-add.html">Add teacher</a>
+</div>
+
+
+
+
+
+        <div class="row g-4">
+          <div class="col-lg-8">
+            <div class="app-card p-4 h-100">
+              <div class="d-flex justify-content-between align-items-center mb-3">
+                <h5 class="mb-0">Teacher list</h5>
+                <button class="btn btn-outline-primary btn-sm" data-export="csv" data-export-target="teachers-table" data-export-filename="teachers.csv">Export</button>
+              </div>
+              <div class="table-responsive">
+                <table class="table align-middle" id="teachers-table">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Subject</th>
+                      <th>Classes</th>
+                      <th>Contact</th>
+                      <th class="text-end">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <strong>Prof. Daria Petrescu</strong>
+                        <div class="text-muted">Coordinator</div>
+                      </td>
+                      <td>Mathematics</td>
+                      <td>9A, 10A, 11B</td>
+                      <td>0733 440 120</td>
+                      <td class="text-end">
+                        <div class="table-actions">
+                          <a class="btn btn-sm btn-outline-primary" href="teacher-detail.html">Details</a>
+                          <a class="btn btn-sm btn-outline-secondary" href="teacher-edit.html">Edit</a>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <strong>Prof. Andrei Luca</strong>
+                        <div class="text-muted">Full-time</div>
+                      </td>
+                      <td>Romanian</td>
+                      <td>8B, 9B, 10B</td>
+                      <td>0721 330 765</td>
+                      <td class="text-end">
+                        <div class="table-actions">
+                          <a class="btn btn-sm btn-outline-primary" href="teacher-detail.html">Details</a>
+                          <a class="btn btn-sm btn-outline-secondary" href="teacher-edit.html">Edit</a>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <strong>Prof. Ioana Mihai</strong>
+                        <div class="text-muted">Associate</div>
+                      </td>
+                      <td>Biology</td>
+                      <td>9A, 11A</td>
+                      <td>0722 180 332</td>
+                      <td class="text-end">
+                        <div class="table-actions">
+                          <a class="btn btn-sm btn-outline-primary" href="teacher-detail.html">Details</a>
+                          <a class="btn btn-sm btn-outline-secondary" href="teacher-edit.html">Edit</a>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <strong>Prof. Calin Rusu</strong>
+                        <div class="text-muted">Full-time</div>
+                      </td>
+                      <td>Computer science</td>
+                      <td>10A, 12A</td>
+                      <td>0744 122 409</td>
+                      <td class="text-end">
+                        <div class="table-actions">
+                          <a class="btn btn-sm btn-outline-primary" href="teacher-detail.html">Details</a>
+                          <a class="btn btn-sm btn-outline-secondary" href="teacher-edit.html">Edit</a>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="app-card p-4 h-100">
+              <h5>Subject distribution</h5>
+              <div class="d-grid gap-3 mt-3">
+                <div>
+                  <div class="d-flex justify-content-between">
+                    <span>Sciences</span>
+                    <strong>28</strong>
+                  </div>
+                  <div class="progress" role="progressbar" aria-label="Sciences" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100">
+                    <div class="progress-bar" style="width: 60%"></div>
+                  </div>
+                </div>
+                <div>
+                  <div class="d-flex justify-content-between">
+                    <span>Humanities</span>
+                    <strong>24</strong>
+                  </div>
+                  <div class="progress" role="progressbar" aria-label="Humanities" aria-valuenow="52" aria-valuemin="0" aria-valuemax="100">
+                    <div class="progress-bar bg-success" style="width: 52%"></div>
+                  </div>
+                </div>
+                <div>
+                  <div class="d-flex justify-content-between">
+                    <span>Arts</span>
+                    <strong>14</strong>
+                  </div>
+                  <div class="progress" role="progressbar" aria-label="Arts" aria-valuenow="32" aria-valuemin="0" aria-valuemax="100">
+                    <div class="progress-bar bg-warning" style="width: 32%"></div>
+                  </div>
+                </div>
+                <div>
+                  <div class="d-flex justify-content-between">
+                    <span>Sport</span>
+                    <strong>8</strong>
+                  </div>
+                  <div class="progress" role="progressbar" aria-label="Sport" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                    <div class="progress-bar bg-info" style="width: 20%"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <footer class="app-footer" data-footer-text>Copyright 2026 School Admin. All rights reserved.</footer>
+
+    </div>
+  </div>
+  <div class="sidebar-overlay"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../assets/js/theme.js"></script>
+  <script src="../assets/js/app.js"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+

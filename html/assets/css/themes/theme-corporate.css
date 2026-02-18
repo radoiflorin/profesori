@@ -1,0 +1,15 @@
+﻿:root[data-theme="corporate"] {
+  --app-primary: #0f766e;
+  --app-secondary: #14b8a6;
+  --app-accent: #f59e0b;
+  --app-bg: #f2f6f4;
+  --app-surface: #ffffff;
+  --app-surface-2: #f7faf9;
+  --app-text: #0f2a2b;
+  --app-muted: #54706f;
+  --app-border: #d7e2de;
+  --bs-primary: #0f766e;
+  --bs-primary-rgb: 15, 118, 110;
+  --bs-link-color: #0f766e;
+  --bs-link-hover-color: #115e59;
+}

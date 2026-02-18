@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="ro" data-theme="school">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Admin Scoala | Detaliu eveniment</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Literata:wght@400;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="../assets/css/app.css" rel="stylesheet">
+  <link href="../assets/css/themes/theme-school.css" rel="stylesheet">
+  <link href="../assets/css/themes/theme-corporate.css" rel="stylesheet">
+  <link href="../assets/css/themes/theme-dark.css" rel="stylesheet">
+</head>
+<body data-page="calendar" data-base="../" data-sidebar-title="Evenimente active" data-sidebar-body="7 evenimente planificate luna aceasta." data-sidebar-badge-text="Calendar complet" data-sidebar-badge-class="success" data-sidebar-badge-icon="bi-calendar-event" data-topbar-title="Detaliu eveniment" data-topbar-subtitle="Informatii complete despre eveniment" data-topbar-search="Cauta in calendar" data-topbar-cta="Editeaza eveniment" data-topbar-avatar="RA" data-footer-text="Copyright 2026 Admin Scoala. Toate drepturile rezervate.">
+  <div class="app-shell">
+    <aside class="sidebar">
+  <div class="sidebar-header">
+    <a class="brand" href="../index.html">
+      <div class="brand-mark">S</div>
+      <div>
+        <div class="brand-title">Admin Scoala</div>
+        <div class="brand-subtitle">Dashboard</div>
+      </div>
+    </a>
+    <button class="btn btn-light btn-icon d-lg-none" data-sidebar-toggle type="button" aria-label="Deschide meniul">
+      <i class="bi bi-list"></i>
+    </button>
+  </div>
+  <div class="sidebar-search">
+    <input class="form-control" type="text" placeholder="Cauta elev, clasa, profesor" aria-label="Cauta in scoala">
+  </div>
+  <nav class="sidebar-nav">
+    <a class="nav-link" data-page="dashboard" href="../index.html"><i class="bi bi-speedometer2"></i>Dashboard</a>
+    <a class="nav-link" data-page="students" href="../pages/students.html"><i class="bi bi-people"></i>Elevi</a>
+    <a class="nav-link" data-page="student-detail" href="../pages/student-detail.html"><i class="bi bi-person-badge"></i>Detaliu elev</a>
+    <a class="nav-link" data-page="teachers" href="../pages/teachers.html"><i class="bi bi-mortarboard"></i>Profesori</a>
+    <a class="nav-link" data-page="classes" href="../pages/classes.html"><i class="bi bi-grid"></i>Clase</a>
+    <a class="nav-link" data-page="timetable" href="../pages/timetable.html"><i class="bi bi-calendar3"></i>Orar</a>
+    <a class="nav-link" data-page="grades" href="../pages/grades.html"><i class="bi bi-bar-chart"></i>Note</a>
+    <a class="nav-link" data-page="attendance" href="../pages/attendance.html"><i class="bi bi-check2-square"></i>Prezenta</a>
+    <a class="nav-link" data-page="messages" href="../pages/messages.html"><i class="bi bi-chat-dots"></i>Mesaje</a>
+    <a class="nav-link" data-page="calendar" href="../pages/calendar.html"><i class="bi bi-calendar-event"></i>Calendar</a>
+    <a class="nav-link" data-page="settings" href="../pages/settings.html"><i class="bi bi-gear"></i>Setari</a>
+    <a class="nav-link" data-page="login" href="../pages/login.html"><i class="bi bi-person"></i>Autentificare</a>
+    <a class="nav-link" data-page="not-found" href="../pages/404.html"><i class="bi bi-exclamation-triangle"></i>404</a>
+  </nav>
+  <div class="sidebar-card">
+    <h6 data-sidebar-title>Evenimente active</h6>
+    <p class="mb-2" data-sidebar-body>7 evenimente planificate luna aceasta.</p>
+    <div class="badge-soft success" data-sidebar-badge>
+      <i class="bi bi-check-circle" data-sidebar-badge-icon></i>
+      <span data-sidebar-badge-text>Calendar complet</span>
+    </div>
+  </div>
+</aside>
+
+
+    <div class="app-main">
+      <header class="topbar">
+  <div class="topbar-row">
+    <div class="topbar-title">
+      <h1 data-topbar-title>Detaliu eveniment</h1>
+      <span data-topbar-subtitle data-date-subtitle-prefix="Informatii complete despre eveniment">Informatii complete despre eveniment</span>
+    </div>
+    <div class="topbar-user">
+      <div class="topbar-menu">
+        <button class="btn btn-light btn-icon" type="button" data-menu-toggle="chat" aria-label="Deschide chat">
+          <i class="bi bi-chat-dots"></i>
+        </button>
+        <div class="topbar-dropdown" data-menu="chat">
+          <div class="topbar-dropdown-header">
+            <div>
+              <strong>Mesaje</strong>
+              <div class="text-muted small">3 noi</div>
+            </div>
+            <a class="btn btn-sm btn-outline-primary" href="../pages/messages.html">Vezi tot</a>
+          </div>
+          <div class="topbar-dropdown-body">
+            <div class="topbar-item">
+              <div>
+                <strong>Secretariat</strong>
+                <div class="text-muted small">Documente bursa sociala</div>
+              </div>
+              <span class="badge-soft warning">Nou</span>
+            </div>
+            <div class="topbar-item">
+              <div>
+                <strong>Diriginte 10B</strong>
+                <div class="text-muted small">Absente repetate elevi</div>
+              </div>
+              <span class="badge-soft danger">Urgent</span>
+            </div>
+            <div class="topbar-item">
+              <div>
+                <strong>Prof. Biologie</strong>
+                <div class="text-muted small">Propunere proiect</div>
+              </div>
+              <span class="badge-soft success">Rezolvat</span>
+            </div>
+          </div>
+          <div class="topbar-dropdown-footer">
+            <button class="btn btn-primary w-100" type="button">Compune mesaj</button>
+          </div>
+        </div>
+      </div>
+      <select class="form-select form-select-sm" id="theme-select" aria-label="Schimba tema">
+        <option value="school">School</option>
+        <option value="corporate">Corporate</option>
+        <option value="dark">Dark</option>
+      </select>
+      <a class="btn btn-light btn-sm lang-toggle" data-lang-toggle href="#" aria-label="Schimba in engleza">EN</a>
+      <div class="topbar-menu">
+        <button class="avatar" type="button" data-menu-toggle="user" aria-label="Meniu utilizator" data-topbar-avatar>RA</button>
+        <div class="topbar-dropdown" data-menu="user">
+          <div class="topbar-dropdown-header">
+            <div>
+              <strong>Administrator</strong>
+              <div class="text-muted small">admin@scoala.ro</div>
+            </div>
+          </div>
+          <div class="topbar-dropdown-body">
+            <a class="topbar-link" href="../pages/settings.html"><i class="bi bi-gear"></i>Setari cont</a>
+            <a class="topbar-link" href="../pages/teacher-detail.html"><i class="bi bi-person-badge"></i>Profilul meu</a>
+            <a class="topbar-link" href="../pages/attendance.html"><i class="bi bi-check2-square"></i>Validari absente</a>
+          </div>
+          <div class="topbar-dropdown-footer">
+            <a class="btn btn-outline-danger w-100" href="../pages/login.html">Delogare</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+      <main class="content container-fluid">
+        <div class="page-toolbar">
+  <div class="inline-search">
+    <i class="bi bi-search"></i>
+    <input class="form-control" type="text" placeholder="Cauta in calendar" aria-label="Cauta in calendar">
+  </div>
+  <a class="btn btn-primary btn-sm" href="calendar-add.html">Editeaza eveniment</a>
+</div>
+
+        <div class="row g-4">
+          <div class="col-lg-8">
+            <div class="app-card p-4">
+              <div class="d-flex justify-content-between align-items-start mb-3">
+                <div>
+                  <h5 class="mb-1">Sedinta cu parintii</h5>
+                  <div class="text-muted"><span data-date-line>11 feb 2026</span> · 17:30 - 18:30</div>
+                </div>
+                <span class="badge-soft warning">Comunicare</span>
+              </div>
+              <p class="text-muted">Reuniune pentru prezentarea progresului elevilor si a planului pentru semestrul II.</p>
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <div class="border rounded-3 p-3">
+                    <div class="text-muted small">Locatie</div>
+                    <strong>Sala festiva</strong>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="border rounded-3 p-3">
+                    <div class="text-muted small">Organizator</div>
+                    <strong>Diriginte 10B</strong>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="border rounded-3 p-3">
+                    <div class="text-muted small">Public</div>
+                    <strong>Parinti + elevi</strong>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="border rounded-3 p-3">
+                    <div class="text-muted small">Status</div>
+                    <strong>Confirmat</strong>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="app-card p-4 mt-4">
+              <h6 class="mb-3">Agenda</h6>
+              <ul class="list-unstyled mb-0">
+                <li class="d-flex justify-content-between mb-2"><span>17:30</span><span>Introducere si actualizari</span></li>
+                <li class="d-flex justify-content-between mb-2"><span>17:50</span><span>Rezultate si progres elevi</span></li>
+                <li class="d-flex justify-content-between mb-2"><span>18:15</span><span>Intrebari si raspunsuri</span></li>
+                <li class="d-flex justify-content-between"><span>18:30</span><span>Incheiere</span></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="app-card p-4">
+              <h6 class="mb-3">Actiuni rapide</h6>
+              <div class="d-grid gap-2">
+                <button class="btn btn-outline-primary" type="button">Trimite notificare</button>
+                <button class="btn btn-outline-secondary" type="button">Descarca agenda</button>
+                <a class="btn btn-outline-danger" href="calendar-event-list.html?date=2026-02-11">Vezi toate evenimentele din zi</a>
+              </div>
+            </div>
+            <div class="app-card p-4 mt-4">
+              <h6 class="mb-3">Participanti</h6>
+              <div class="d-grid gap-2">
+                <div class="d-flex justify-content-between"><span>Parinti confirmati</span><strong>28</strong></div>
+                <div class="d-flex justify-content-between"><span>Profesori prezenti</span><strong>6</strong></div>
+                <div class="d-flex justify-content-between"><span>Elevi invitati</span><strong>31</strong></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <footer class="app-footer" data-footer-text>Copyright 2026 Admin Scoala. Toate drepturile rezervate.</footer>
+
+    </div>
+  </div>
+  <div class="sidebar-overlay"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    (() => {
+      const params = new URLSearchParams(window.location.search);
+      const date = params.get('date');
+      if (!date) return;
+
+      const [year, month, day] = date.split('-').map((part) => parseInt(part, 10));
+      if (!year || !month || !day) return;
+      const months = ['ian', 'feb', 'mar', 'apr', 'mai', 'iun', 'iul', 'aug', 'sept', 'oct', 'nov', 'dec'];
+      const formatted = `${day} ${months[month - 1]} ${year}`;
+
+      document.title = `Admin Scoala | Detaliu eveniment · ${formatted}`;
+      document.querySelectorAll('[data-date-line]').forEach((el) => {
+        el.textContent = formatted;
+      });
+      document.querySelectorAll('[data-date-subtitle-prefix]').forEach((el) => {
+        const prefix = el.dataset.dateSubtitlePrefix || '';
+        el.textContent = `${prefix} · ${formatted}`.trim();
+      });
+    })();
+  </script>
+  <script src="../assets/js/theme.js"></script>
+  <script src="../assets/js/app.js"></script>
+</body>
+</html>
+
+
+
+
+

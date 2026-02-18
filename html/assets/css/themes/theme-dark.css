@@ -1,0 +1,31 @@
+﻿:root[data-theme="dark"] {
+  --app-primary: #38bdf8;
+  --app-secondary: #22d3ee;
+  --app-accent: #f97316;
+  --app-bg: #0b1224;
+  --app-surface: #111c33;
+  --app-surface-2: #16243f;
+  --app-text: #e2e8f0;
+  --app-muted: #94a3b8;
+  --app-border: #1f2a44;
+  --bs-primary: #38bdf8;
+  --bs-primary-rgb: 56, 189, 248;
+  --bs-link-color: #38bdf8;
+  --bs-link-hover-color: #0ea5e9;
+  --bs-body-bg: #0b1224;
+  --bs-body-bg-rgb: 11, 18, 36;
+  --bs-body-color: #e2e8f0;
+  --bs-secondary-color: #94a3b8;
+  --bs-tertiary-bg: #111c33;
+  --bs-border-color: #1f2a44;
+  --bs-card-bg: #111c33;
+  --bs-card-color: #e2e8f0;
+  --bs-table-bg: #111c33;
+  --bs-table-color: #e2e8f0;
+  --bs-table-striped-bg: rgba(148, 163, 184, 0.08);
+  --bs-table-hover-bg: rgba(148, 163, 184, 0.12);
+  --bs-input-bg: #111c33;
+  --bs-input-color: #e2e8f0;
+  --bs-input-border-color: #1f2a44;
+  --bs-heading-color: #f8fafc;
+}
