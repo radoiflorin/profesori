@@ -1,4 +1,38 @@
 ﻿(() => {
+  // API Configuration for Laravel backend
+  const API_BASE = 'http://localhost:8000/api';
+
+  // API helpers for future integration
+  const api = {
+    async get(endpoint) {
+      try {
+        const response = await fetch(`${API_BASE}${endpoint}`);
+        if (!response.ok) throw new Error(`API error: ${response.status}`);
+        return await response.json();
+      } catch (error) {
+        console.error(`Failed to fetch ${endpoint}:`, error);
+        return null;
+      }
+    },
+    async post(endpoint, data) {
+      try {
+        const response = await fetch(`${API_BASE}${endpoint}`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+        if (!response.ok) throw new Error(`API error: ${response.status}`);
+        return await response.json();
+      } catch (error) {
+        console.error(`Failed to post to ${endpoint}:`, error);
+        return null;
+      }
+    }
+  };
+
+  // Expose API helper globally for debugging
+  window.appApi = api;
+
   const closeSidebar = () => document.body.classList.remove('sidebar-open');
   const toggleSidebar = () => document.body.classList.toggle('sidebar-open');
 
